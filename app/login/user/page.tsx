@@ -65,7 +65,7 @@ export default function UserLoginPage() {
         <div style={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Link href="/" style={{ textDecoration: 'none' }}>
             <span style={{ fontSize: 20, fontWeight: 900, color: '#fff', fontFamily: INTER }}>
-              brie<span style={{ color: YELLOW }}>sa</span>
+              Briesa
             </span>
           </Link>
           <Link href="/login" style={{
@@ -122,7 +122,7 @@ export default function UserLoginPage() {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 40 }} className="login-mobile-header">
             <Link href="/" style={{ textDecoration: 'none' }}>
               <span style={{ fontSize: 18, fontWeight: 900, color: '#000', fontFamily: INTER }}>
-                brie<span style={{ color: YELLOW }}>sa</span>
+                Briesa
               </span>
             </Link>
             <Link href="/login" style={{

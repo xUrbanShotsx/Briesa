@@ -173,7 +173,7 @@ export default function PricingPage() {
             color: scrolled ? '#000' : '#fff',
             transition: 'color .4s ease',
           }}>
-            brie<span style={{ color: YELLOW }}>sa</span>
+            Briesa
           </span>
         </Link>
         <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>

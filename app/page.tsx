@@ -178,7 +178,7 @@ function Nav() {
             color: scrolled ? '#000' : '#fff',
             transition: 'color .4s ease',
           }}>
-            brie<span style={{ color: YELLOW }}>sa</span>
+            Briesa
           </span>
         </Link>
 
@@ -773,7 +773,7 @@ function Footer() {
         <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 60, marginBottom: 60 }} className="footer-grid">
           <div>
             <p style={{ fontSize: 18, fontWeight: 900, color: '#fff', marginBottom: 4, fontFamily: INTER }}>
-              brie<span style={{ color: YELLOW }}>sa</span>
+              Briesa
             </p>
             <p style={{ fontSize: 9, fontWeight: 400, letterSpacing: '3px', textTransform: 'uppercase' as const, color: YELLOW, marginBottom: 20, fontFamily: INTER }}>
               Compliance Platform

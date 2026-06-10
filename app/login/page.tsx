@@ -88,7 +88,7 @@ export default function LoginSelectorPage() {
       }}>
         <Link href="/" style={{ textDecoration: 'none' }}>
           <span style={{ fontSize: 18, fontWeight: 900, color: '#fff', fontFamily: INTER }}>
-            brie<span style={{ color: YELLOW }}>sa</span>
+            Briesa
           </span>
         </Link>
         <Link href="/" style={{
