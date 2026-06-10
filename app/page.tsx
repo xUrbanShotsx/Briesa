@@ -174,12 +174,16 @@ function Nav() {
         </Link>
 
         <div className="hidden md:flex items-center gap-10">
-          {['Features', 'Solutions', 'Pricing', 'About'].map(item => (
+          {['Features', 'Solutions', 'About'].map(item => (
             <a key={item} href={`#${item.toLowerCase()}`} style={linkStyle}
               onMouseEnter={e => (e.currentTarget.style.color = '#000')}
               onMouseLeave={e => (e.currentTarget.style.color = INK)}
             >{item}</a>
           ))}
+          <Link href="/pricing" style={linkStyle}
+            onMouseEnter={e => (e.currentTarget.style.color = '#000')}
+            onMouseLeave={e => (e.currentTarget.style.color = INK)}
+          >Pricing</Link>
         </div>
 
         <div className="hidden md:flex items-center gap-4">
@@ -203,7 +207,7 @@ function Nav() {
 
       {open && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 999, background: '#fff', paddingTop: 64, fontFamily: INTER }}>
-          {['Features', 'Solutions', 'Pricing', 'About'].map(item => (
+          {['Features', 'Solutions', 'About'].map(item => (
             <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setOpen(false)} style={{
               padding: '20px 28px', fontSize: 13, fontWeight: 600,
               letterSpacing: '2px', textTransform: 'uppercase' as const,
@@ -213,6 +217,14 @@ function Nav() {
               {item} <span style={{ color: '#aaa' }}>→</span>
             </a>
           ))}
+          <Link href="/pricing" onClick={() => setOpen(false)} style={{
+            padding: '20px 28px', fontSize: 13, fontWeight: 600,
+            letterSpacing: '2px', textTransform: 'uppercase' as const,
+            color: '#000', textDecoration: 'none', borderBottom: '1px solid #f0f0f0',
+            display: 'flex', justifyContent: 'space-between',
+          }}>
+            Pricing <span style={{ color: '#aaa' }}>→</span>
+          </Link>
           <div style={{ padding: 28, marginTop: 'auto', borderTop: '1px solid #f0f0f0' }}>
             <Link href="/login" onClick={() => setOpen(false)} style={{
               display: 'block', textAlign: 'center', padding: 16,
@@ -566,60 +578,6 @@ function Solutions() {
   )
 }
 
-// ── Pricing ───────────────────────────────────────────────────────────────────
-function Pricing() {
-  const plans = [
-    { name: 'Starter',      price: '$79',   period: '/mo', desc: 'Perfect for small teams.',          features: ['Up to 10 users', 'Core compliance modules', 'Incident tracking', 'Document storage 5GB', 'Email support'],           hi: false },
-    { name: 'Professional', price: '$199',  period: '/mo', desc: 'The full platform for growing teams.', features: ['Up to 50 users', 'All compliance modules', 'AI tools & templates', 'Contractor portal', 'Priority support'],   hi: true  },
-    { name: 'Enterprise',   price: 'Custom', period: '',   desc: 'For large multi-site operations.',   features: ['Unlimited users', 'Custom integrations', 'Dedicated account manager', 'White-label options', 'SLA guarantee'],  hi: false },
-  ]
-  return (
-    <section id="pricing" style={{ padding: 'clamp(60px,10vh,120px) clamp(24px,6vw,80px)', background: '#000', borderTop: `1px solid ${HAIRLINE}`, fontFamily: INTER }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-        <GoldLine />
-        <p data-reveal style={{ fontSize: 10, letterSpacing: '4px', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.4)', marginBottom: 16, fontFamily: INTER }}>Pricing</p>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 72, flexWrap: 'wrap' as const, gap: 32 }}>
-          <h2 data-reveal data-delay="100" style={{ fontSize: 'clamp(28px,3.5vw,52px)', fontWeight: 900, textTransform: 'uppercase' as const, lineHeight: 0.92, color: '#fff', fontFamily: INTER }}>
-            TRANSPARENT PRICING.<br /><em style={{ fontStyle: 'normal', color: YELLOW }}>NO SURPRISES.</em>
-          </h2>
-          <p data-reveal data-delay="200" style={{ fontSize: 14, fontWeight: 300, lineHeight: 1.8, color: INK, maxWidth: 320, fontFamily: INTER }}>14-day free trial. No credit card required to start.</p>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 2 }}>
-          {plans.map(({ name, price, period, desc, features, hi }, i) => (
-            <div key={i} data-reveal data-delay={`${i * 80}`} style={{
-              padding: '44px 36px',
-              background: hi ? '#0d0d0d' : '#000',
-              border: hi ? `2px solid ${YELLOW}` : `1px solid ${HAIRLINE}`,
-            }}>
-              {hi && <p style={{ fontSize: 9, fontWeight: 700, letterSpacing: '3px', textTransform: 'uppercase' as const, color: YELLOW, marginBottom: 12, fontFamily: INTER }}>● Most Popular</p>}
-              <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '3px', textTransform: 'uppercase' as const, color: hi ? '#fff' : INK, marginBottom: 8, fontFamily: INTER }}>{name}</p>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 8 }}>
-                <span style={{ fontSize: 40, fontWeight: 900, color: hi ? YELLOW : '#fff', lineHeight: 1, fontFamily: INTER }}>{price}</span>
-                {period && <span style={{ fontSize: 12, color: INK, fontFamily: INTER }}>{period}</span>}
-              </div>
-              <p style={{ fontSize: 13, color: INK, marginBottom: 28, fontFamily: INTER }}>{desc}</p>
-              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 36px' }}>
-                {features.map(f => (
-                  <li key={f} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10, fontSize: 13, fontWeight: 300, color: INK, fontFamily: INTER }}>
-                    <CheckCircle2 size={13} style={{ color: hi ? YELLOW : '#22c55e', flexShrink: 0 }} />{f}
-                  </li>
-                ))}
-              </ul>
-              <Link href="/login" style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                padding: '14px 0', fontSize: 10, fontWeight: 700, letterSpacing: '2px',
-                textTransform: 'uppercase' as const, textDecoration: 'none', cursor: 'none', fontFamily: INTER,
-                background: hi ? YELLOW : 'transparent', color: hi ? '#000' : '#fff',
-                border: hi ? 'none' : `1px solid ${HAIRLINE_MID}`,
-              }}>Get Started <ArrowRight size={12} /></Link>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 // ── Process ───────────────────────────────────────────────────────────────────
 function Process() {
   const steps = [
@@ -890,7 +848,6 @@ export default function HomePage() {
         <Stats />
         <Features />
         <Solutions />
-        <Pricing />
         <Process />
         <Testimonials />
         <CTA />
