@@ -3,9 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import {
-  ArrowRight, HardHat, CheckCircle2, Menu, X,
-  Shield, BarChart3, ClipboardCheck, GraduationCap,
-  AlertTriangle, Building2, FileText, Zap, Users,
+  ArrowRight, HardHat, Menu, X, Zap,
 } from 'lucide-react'
 
 // ── Brand ─────────────────────────────────────────────────────────────────────
@@ -183,11 +181,11 @@ function Nav() {
         </Link>
 
         <div className="hidden md:flex items-center gap-10">
-          {['Features', 'Solutions', 'About'].map(item => (
-            <a key={item} href={`#${item.toLowerCase()}`} style={linkStyle}
+          {[['Features', '/features'], ['Solutions', '#solutions'], ['About', '#about']].map(([label, href]) => (
+            <Link key={label} href={href} style={linkStyle}
               onMouseEnter={e => (e.currentTarget.style.color = linkHover)}
               onMouseLeave={e => (e.currentTarget.style.color = linkColor)}
-            >{item}</a>
+            >{label}</Link>
           ))}
           <Link href="/pricing" style={linkStyle}
             onMouseEnter={e => (e.currentTarget.style.color = linkHover)}
@@ -500,137 +498,6 @@ function Stats() {
   )
 }
 
-// ── Features ──────────────────────────────────────────────────────────────────
-function Features() {
-  const items = [
-    { icon: BarChart3,     color: '#22c55e', title: 'Compliance Score',      desc: 'Real-time scoring across WHS, ISO, contractor and training compliance. Always know your audit readiness.' },
-    { icon: Users,         color: '#3b82f6', title: 'Contractor Management', desc: 'Track insurance, licences, inductions and compliance scores for every contractor and subcontractor.' },
-    { icon: AlertTriangle, color: '#ef4444', title: 'Incidents & Hazards',   desc: 'Log, investigate and close incidents fast. Auto-trigger corrective actions and track to completion.' },
-    { icon: GraduationCap, color: '#f59e0b', title: 'Training Records',      desc: 'Monitor staff training completion, expiry dates and competency records across your workforce.' },
-    { icon: ClipboardCheck,color: '#a855f7', title: 'Inspections & Audits',  desc: 'Digital checklists, site inspections, SWMS and pre-start forms — captured and stored automatically.' },
-    { icon: Zap,           color: YELLOW,    title: 'AI-Powered Tools',      desc: 'Generate SWMS, toolbox talks, risk assessments and reports in seconds with built-in AI.' },
-  ]
-
-  return (
-    <section id="features" style={{ padding: 'clamp(60px,10vh,120px) clamp(24px,6vw,80px)', background: '#000', fontFamily: INTER }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-        <GoldLine />
-        <p data-reveal style={{ fontSize: 10, letterSpacing: '4px', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.4)', marginBottom: 16, fontFamily: INTER }}>Platform Features</p>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center', marginBottom: 72 }} className="features-header">
-          <h2 data-reveal data-delay="100" style={{
-            fontSize: 'clamp(28px,3.5vw,52px)', fontWeight: 900,
-            textTransform: 'uppercase' as const, lineHeight: 0.92,
-            letterSpacing: '0.5px', color: '#fff', fontFamily: INTER,
-          }}>
-            EVERYTHING YOU NEED<br />TO STAY<br /><em style={{ fontStyle: 'normal', color: YELLOW }}>COMPLIANT</em>
-          </h2>
-          <p data-reveal data-delay="200" style={{ fontSize: 14, fontWeight: 300, lineHeight: 1.8, color: INK, fontFamily: INTER }}>
-            From contractor onboarding to incident reporting — every compliance workflow in one place. No more spreadsheets, email threads, or missed expiry dates.
-          </p>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 2 }}>
-          {items.map(({ icon: Icon, color, title, desc }, i) => (
-            <div key={i} data-reveal data-delay={`${i * 60}`} style={{
-              padding: '36px 32px', background: '#0a0a0a',
-              border: `1px solid ${HAIRLINE}`, borderTop: `2px solid ${color}`,
-              transition: 'background .3s',
-            }}
-              onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = '#111'}
-              onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = '#0a0a0a'}
-            >
-              <div style={{ width: 40, height: 40, background: color + '18', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
-                <Icon size={18} style={{ color }} />
-              </div>
-              <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase' as const, color: '#fff', marginBottom: 12, fontFamily: INTER }}>{title}</p>
-              <p style={{ fontSize: 13, fontWeight: 300, lineHeight: 1.7, color: INK, fontFamily: INTER }}>{desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ── Solutions ─────────────────────────────────────────────────────────────────
-function Solutions() {
-  const items = [
-    { icon: Building2, title: 'Construction & Building', points: ['SWMS & JSEA management', 'Subcontractor compliance', 'Site inspection forms', 'Permit-to-work workflows'] },
-    { icon: Users,     title: 'Labour Hire & Staffing',  points: ['Worker licence tracking', 'Induction management', 'Training expiry alerts', 'Compliance dashboards'] },
-    { icon: FileText,  title: 'Manufacturing & Industrial', points: ['ISO 9001 / 45001 readiness', 'Plant & equipment registers', 'Chemical registers', 'Audit trail documentation'] },
-  ]
-
-  return (
-    <section id="solutions" style={{ padding: 'clamp(60px,10vh,120px) clamp(24px,6vw,80px)', background: '#0a0a0a', borderTop: `1px solid ${HAIRLINE}`, fontFamily: INTER }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-        <GoldLine />
-        <p data-reveal style={{ fontSize: 10, letterSpacing: '4px', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.4)', marginBottom: 16, fontFamily: INTER }}>By Industry</p>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 72, flexWrap: 'wrap' as const, gap: 32 }}>
-          <h2 data-reveal data-delay="100" style={{ fontSize: 'clamp(28px,3.5vw,52px)', fontWeight: 900, textTransform: 'uppercase' as const, lineHeight: 0.92, color: '#fff', fontFamily: INTER }}>
-            BUILT FOR INDUSTRIES<br />THAT CAN'T<br /><em style={{ fontStyle: 'normal', color: YELLOW }}>AFFORD TO FAIL</em>
-          </h2>
-          <p data-reveal data-delay="200" style={{ fontSize: 14, fontWeight: 300, lineHeight: 1.8, color: INK, maxWidth: 360, fontFamily: INTER }}>
-            Tailored compliance workflows for high-risk, regulated industries across Australia.
-          </p>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 2 }}>
-          {items.map(({ icon: Icon, title, points }, i) => (
-            <div key={i} data-reveal data-delay={`${i * 80}`} style={{ padding: '48px 36px', background: '#000', border: `1px solid ${HAIRLINE}` }}>
-              <div style={{ width: 44, height: 44, border: `1px solid ${YELLOW}35`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 28 }}>
-                <Icon size={18} style={{ color: YELLOW }} />
-              </div>
-              <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#fff', marginBottom: 24, fontFamily: INTER }}>{title}</p>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                {points.map(p => (
-                  <li key={p} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12, fontSize: 13, fontWeight: 300, color: INK, fontFamily: INTER }}>
-                    <span style={{ width: 1, height: 14, background: YELLOW, flexShrink: 0 }} />{p}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ── Process ───────────────────────────────────────────────────────────────────
-function Process() {
-  const steps = [
-    { num: '01', title: 'Onboard',     body: 'Set up your company, invite your team, and configure your compliance areas in under 30 minutes.' },
-    { num: '02', title: 'Configure',   body: 'Customise inspection forms, SWMS templates and notification rules to match your operations.' },
-    { num: '03', title: 'Automate',    body: 'Let Briesa chase expiries, trigger corrective actions, and generate compliance reports automatically.' },
-    { num: '04', title: 'Audit-Ready', body: 'Export audit packs, compliance reports and records in seconds — any time, any inspection.' },
-  ]
-  return (
-    <section style={{ padding: 'clamp(60px,10vh,120px) clamp(24px,6vw,80px)', background: '#0a0a0a', borderTop: `1px solid ${HAIRLINE}`, fontFamily: INTER }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-        <GoldLine />
-        <p data-reveal style={{ fontSize: 10, letterSpacing: '4px', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.4)', marginBottom: 16, fontFamily: INTER }}>How It Works</p>
-        <h2 data-reveal data-delay="100" style={{ fontSize: 'clamp(28px,3.5vw,52px)', fontWeight: 900, textTransform: 'uppercase' as const, lineHeight: 0.92, color: '#fff', marginBottom: 72, fontFamily: INTER }}>
-          THE BRIESA<br /><em style={{ fontStyle: 'normal', color: YELLOW }}>EXPERIENCE</em>
-        </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 0 }} className="process-grid">
-          {steps.map(({ num, title, body }, i) => (
-            <div key={i} data-reveal data-delay={`${i * 100}`} style={{
-              padding: i === 0 ? '0 40px 0 0' : '0 40px',
-              borderRight: i < 3 ? `1px solid ${HAIRLINE}` : undefined,
-              position: 'relative',
-            }}>
-              <p style={{ fontSize: 80, fontWeight: 900, lineHeight: 1, color: HAIRLINE_MID, letterSpacing: '-3px', marginBottom: 24, fontFamily: INTER }}>{num}</p>
-              <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#fff', marginBottom: 16, fontFamily: INTER }}>{title}</p>
-              <p style={{ fontSize: 14, fontWeight: 300, lineHeight: 1.8, color: INK, fontFamily: INTER }}>{body}</p>
-              {i < 3 && (
-                <div style={{ position: 'absolute', top: 40, right: -1, width: 1, height: 100, background: `linear-gradient(to bottom, ${YELLOW}, transparent)` }} />
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 // ── Testimonials ──────────────────────────────────────────────────────────────
 function Testimonials() {
   const items = [
@@ -839,7 +706,6 @@ function GlobalStyles() {
       @media (max-width: 900px) {
         .process-grid   { grid-template-columns: 1fr 1fr !important; gap: 40px !important; }
         .footer-grid    { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
-        .features-header{ grid-template-columns: 1fr    !important; }
       }
       @media (max-width: 600px) {
         .process-grid { grid-template-columns: 1fr !important; }
@@ -862,9 +728,6 @@ export default function HomePage() {
       <main>
         <StickyStack />
         <Stats />
-        <Features />
-        <Solutions />
-        <Process />
         <Testimonials />
         <CTA />
         <ContractorBanner />
