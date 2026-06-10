@@ -252,6 +252,12 @@ function PlanCard({ plan, index }: { plan: typeof plans[0]; index: number }) {
 
 export default function PricingPage() {
   useReveal()
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 60)
+    window.addEventListener('scroll', fn, { passive: true })
+    return () => window.removeEventListener('scroll', fn)
+  }, [])
 
   return (
     <div style={{ minHeight: '100vh', background: '#000', fontFamily: INTER }}>
@@ -260,31 +266,46 @@ export default function PricingPage() {
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '13px 48px', background: '#fff', borderBottom: '1px solid #e8e8e8',
+        padding: scrolled ? '11px 48px' : '18px 48px',
+        background: scrolled ? '#fff' : 'transparent',
+        borderBottom: scrolled ? '1px solid #e8e8e8' : 'none',
+        transition: 'background .4s ease, border-color .4s ease, padding .4s ease',
       }}>
         <Link href="/" style={{ textDecoration: 'none' }}>
-          <span style={{ fontSize: 16, fontWeight: 900, color: '#000', fontFamily: INTER }}>
+          <span style={{
+            fontSize: 16, fontWeight: 900, fontFamily: INTER,
+            color: scrolled ? '#000' : '#fff',
+            transition: 'color .4s ease',
+          }}>
             brie<span style={{ color: YELLOW }}>sa</span>
           </span>
         </Link>
         <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
           <Link href="/" style={{
             fontSize: 9, fontWeight: 500, letterSpacing: '2px',
-            textTransform: 'uppercase' as const, color: INK,
+            textTransform: 'uppercase' as const,
+            color: scrolled ? INK : 'rgba(255,255,255,0.6)',
             textDecoration: 'none', transition: 'color .3s', fontFamily: INTER,
           }}
-            onMouseEnter={e => (e.currentTarget.style.color = '#000')}
-            onMouseLeave={e => (e.currentTarget.style.color = INK)}
+            onMouseEnter={e => (e.currentTarget.style.color = scrolled ? '#000' : '#fff')}
+            onMouseLeave={e => (e.currentTarget.style.color = scrolled ? INK : 'rgba(255,255,255,0.6)')}
           >Features</Link>
           <Link href="/login" style={{
             fontSize: 9, fontWeight: 700, letterSpacing: '2px',
             textTransform: 'uppercase' as const, fontFamily: INTER,
-            background: '#000', color: '#fff',
+            background: scrolled ? '#000' : 'transparent',
+            color: '#fff',
+            border: scrolled ? 'none' : '1px solid rgba(255,255,255,0.4)',
             padding: '9px 18px', textDecoration: 'none',
-            transition: 'background .3s, color .3s',
+            transition: 'background .3s, color .3s, border-color .3s',
           }}
-            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = YELLOW; (e.currentTarget as HTMLElement).style.color = '#000' }}
-            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = '#000'; (e.currentTarget as HTMLElement).style.color = '#fff' }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = YELLOW; (e.currentTarget as HTMLElement).style.color = '#000'; (e.currentTarget as HTMLElement).style.borderColor = 'transparent' }}
+            onMouseLeave={e => {
+              const el = e.currentTarget as HTMLElement
+              el.style.background = scrolled ? '#000' : 'transparent'
+              el.style.color = '#fff'
+              el.style.borderColor = scrolled ? 'transparent' : 'rgba(255,255,255,0.4)'
+            }}
           >Log in</Link>
         </div>
       </nav>

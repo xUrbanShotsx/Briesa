@@ -151,9 +151,12 @@ function Nav() {
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
+  const linkColor = scrolled ? INK : 'rgba(255,255,255,0.6)'
+  const linkHover = scrolled ? '#000' : '#fff'
+
   const linkStyle = {
     fontSize: 11, fontWeight: 500, letterSpacing: '2px',
-    textTransform: 'uppercase' as const, color: INK,
+    textTransform: 'uppercase' as const, color: linkColor,
     textDecoration: 'none', transition: 'color .3s', cursor: 'none',
     fontFamily: INTER,
   }
@@ -163,12 +166,18 @@ function Nav() {
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: scrolled ? '10px 48px' : '14px 48px',
-        background: '#fff', borderBottom: '1px solid #e8e8e8',
-        transition: 'padding .4s ease', fontFamily: INTER,
+        padding: scrolled ? '10px 48px' : '18px 48px',
+        background: scrolled ? '#fff' : 'transparent',
+        borderBottom: scrolled ? '1px solid #e8e8e8' : 'none',
+        transition: 'background .4s ease, border-color .4s ease, padding .4s ease',
+        fontFamily: INTER,
       }}>
         <Link href="/" style={{ textDecoration: 'none' }}>
-          <span style={{ fontSize: 18, fontWeight: 900, letterSpacing: '-0.3px', color: '#000', fontFamily: INTER }}>
+          <span style={{
+            fontSize: 18, fontWeight: 900, letterSpacing: '-0.3px', fontFamily: INTER,
+            color: scrolled ? '#000' : '#fff',
+            transition: 'color .4s ease',
+          }}>
             brie<span style={{ color: YELLOW }}>sa</span>
           </span>
         </Link>
@@ -176,13 +185,13 @@ function Nav() {
         <div className="hidden md:flex items-center gap-10">
           {['Features', 'Solutions', 'About'].map(item => (
             <a key={item} href={`#${item.toLowerCase()}`} style={linkStyle}
-              onMouseEnter={e => (e.currentTarget.style.color = '#000')}
-              onMouseLeave={e => (e.currentTarget.style.color = INK)}
+              onMouseEnter={e => (e.currentTarget.style.color = linkHover)}
+              onMouseLeave={e => (e.currentTarget.style.color = linkColor)}
             >{item}</a>
           ))}
           <Link href="/pricing" style={linkStyle}
-            onMouseEnter={e => (e.currentTarget.style.color = '#000')}
-            onMouseLeave={e => (e.currentTarget.style.color = INK)}
+            onMouseEnter={e => (e.currentTarget.style.color = linkHover)}
+            onMouseLeave={e => (e.currentTarget.style.color = linkColor)}
           >Pricing</Link>
         </div>
 
@@ -191,17 +200,24 @@ function Nav() {
           <Link href="/login" style={{
             fontSize: 11, fontWeight: 700, letterSpacing: '2px',
             textTransform: 'uppercase' as const, fontFamily: INTER,
-            background: '#000', color: '#fff',
+            background: scrolled ? '#000' : 'transparent',
+            color: scrolled ? '#fff' : '#fff',
+            border: scrolled ? 'none' : '1px solid rgba(255,255,255,0.4)',
             padding: '12px 24px', textDecoration: 'none', cursor: 'none',
-            transition: 'background .3s, color .3s',
+            transition: 'background .3s, color .3s, border-color .3s',
           }}
-            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = YELLOW; (e.currentTarget as HTMLElement).style.color = '#000' }}
-            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = '#000'; (e.currentTarget as HTMLElement).style.color = '#fff' }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = YELLOW; (e.currentTarget as HTMLElement).style.color = '#000'; (e.currentTarget as HTMLElement).style.borderColor = 'transparent' }}
+            onMouseLeave={e => {
+              const el = e.currentTarget as HTMLElement
+              el.style.background = scrolled ? '#000' : 'transparent'
+              el.style.color = '#fff'
+              el.style.borderColor = scrolled ? 'transparent' : 'rgba(255,255,255,0.4)'
+            }}
           >Get Started</Link>
         </div>
 
         <button onClick={() => setOpen(v => !v)} className="md:hidden" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
-          {open ? <X size={22} color="#000" /> : <Menu size={22} color="#000" />}
+          {open ? <X size={22} color={scrolled ? '#000' : '#fff'} /> : <Menu size={22} color={scrolled ? '#000' : '#fff'} />}
         </button>
       </nav>
 
