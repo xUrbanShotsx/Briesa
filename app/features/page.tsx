@@ -86,7 +86,7 @@ function Nav() {
         </Link>
 
         <div className="hidden md:flex items-center gap-10">
-          {[['Product', '/product'], ['About', '#about']].map(([label, href]) => (
+          {[['Product', '/product'], ['About', '/about']].map(([label, href]) => (
             <Link key={label} href={href} style={linkStyle}
               onMouseEnter={e => (e.currentTarget.style.color = linkHover)}
               onMouseLeave={e => (e.currentTarget.style.color = linkColor)}
@@ -129,7 +129,7 @@ function Nav() {
 
       {open && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 999, background: '#fff', paddingTop: 64, fontFamily: INTER }}>
-          {[['Product', '/product'], ['About', '#about']].map(([label, href]) => (
+          {[['Product', '/product'], ['About', '/about']].map(([label, href]) => (
             <Link key={label} href={href} onClick={() => setOpen(false)} style={{
               padding: '20px 28px', fontSize: 13, fontWeight: 600,
               letterSpacing: '2px', textTransform: 'uppercase',
