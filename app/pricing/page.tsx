@@ -132,7 +132,7 @@ function PlanCard({ plan, index }: { plan: typeof plans[0]; index: number }) {
         backgroundImage: `url('${plan.photo}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        opacity: hovered ? 0.18 : 0,
+        opacity: hovered ? 0.32 : 0,
         transition: 'opacity .7s cubic-bezier(.23,1,.32,1)',
       }} />
       {/* Dark overlay for readability */}
