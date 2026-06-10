@@ -469,34 +469,6 @@ function StickyStack() {
   )
 }
 
-// ── Stats band ────────────────────────────────────────────────────────────────
-function Stats() {
-  return (
-    <div style={{
-      background: '#0a0a0a', fontFamily: INTER,
-      borderTop: `1px solid ${HAIRLINE}`, borderBottom: `1px solid ${HAIRLINE}`,
-      display: 'grid', gridTemplateColumns: 'repeat(4,1fr)',
-    }}>
-      {[
-        { value: '2400', suffix: '+', label: 'Active users'         },
-        { value: '98',   suffix: '%', label: 'Audit pass rate'       },
-        { value: '60',   suffix: '%', label: 'Time saved on admin'   },
-        { value: '4.9',  suffix: '★', label: 'Customer rating'       },
-      ].map(({ value, suffix, label }, i) => (
-        <div key={i} data-reveal data-delay={`${i * 80}`} style={{
-          padding: 'clamp(32px,5vw,64px) clamp(20px,3vw,44px)',
-          borderRight: i < 3 ? `1px solid ${HAIRLINE}` : undefined,
-        }}>
-          <p style={{ fontSize: 'clamp(44px,5vw,68px)', fontWeight: 900, lineHeight: 1, letterSpacing: '-1.5px', color: '#fff', fontFamily: INTER }}>
-            <span data-count={value}>{value}</span>
-            <span style={{ color: YELLOW }}>{suffix}</span>
-          </p>
-          <p style={{ fontSize: 10, fontWeight: 500, letterSpacing: '3px', textTransform: 'uppercase' as const, color: INK, marginTop: 10, fontFamily: INTER }}>{label}</p>
-        </div>
-      ))}
-    </div>
-  )
-}
 
 // ── Testimonials ──────────────────────────────────────────────────────────────
 function Testimonials() {
@@ -718,7 +690,6 @@ function GlobalStyles() {
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function HomePage() {
   useReveal()
-  useCounters()
 
   return (
     <>
@@ -727,7 +698,6 @@ export default function HomePage() {
       <Nav />
       <main>
         <StickyStack />
-        <Stats />
         <Testimonials />
         <CTA />
         <ContractorBanner />
