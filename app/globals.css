@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design tokens — Innovate dark aesthetic (always dark) ─── */
+:root {
+  --bg:               #0d0d0d;
+  --bg-secondary:     #111111;
+  --bg-hover:         #161616;
+  --bg-active:        #1e1e1e;
+  --bg-canvas:        #000000;
+  --border:           #1e1e1e;
+  --border-strong:    #2a2a2a;
+  --border-hover:     #363636;
+  --text:             #f5f5f5;
+  --text-secondary:   #a8a8a8;
+  --text-tertiary:    #707070;
+  --text-muted:       #5a5a5f;
+  --text-placeholder: #303035;
+  --badge-blue-bg:    #0c1829;
+  --badge-blue-text:  #6ea8ff;
+  --badge-yellow-bg:  #1a1500;
+  --badge-yellow-text:#d4a800;
+  --badge-green-bg:   #0a1f14;
+  --badge-green-text: #22c55e;
+  --badge-red-bg:     #1f0a0a;
+  --badge-red-text:   #f87171;
+  --badge-purple-bg:  #110a1f;
+  --badge-purple-text:#a78bfa;
+  --badge-orange-bg:  #1f100a;
+  --badge-orange-text:#fb923c;
+  --accent:           #FFD940;
+  --accent-bg:        #FFD940;
+  --accent-border:    #e8c200;
+  --accent-bg-hover:  #ffe55a;
+  --accent-border-hover:#d4b000;
+  --accent-text:      #000000;
+  --logo-fill:        #f5f5f5;
+  --logo-bolt:        #0d0d0d;
+  --status-bg:        #111111;
+  --status-border:    #1e1e1e;
+  --status-text:      #707070;
+}
+
+/* .dark mirrors :root so the theme toggle has no visible effect */
+.dark {
+  --bg:               #0d0d0d;
+  --bg-secondary:     #111111;
+  --bg-hover:         #161616;
+  --bg-active:        #1e1e1e;
+  --bg-canvas:        #000000;
+  --border:           #1e1e1e;
+  --border-strong:    #2a2a2a;
+  --border-hover:     #363636;
+  --text:             #f5f5f5;
+  --text-secondary:   #a8a8a8;
+  --text-tertiary:    #707070;
+  --text-muted:       #5a5a5f;
+  --text-placeholder: #303035;
+  --badge-blue-bg:    #0c1829;
+  --badge-blue-text:  #6ea8ff;
+  --badge-yellow-bg:  #1a1500;
+  --badge-yellow-text:#d4a800;
+  --badge-green-bg:   #0a1f14;
+  --badge-green-text: #22c55e;
+  --badge-red-bg:     #1f0a0a;
+  --badge-red-text:   #f87171;
+  --badge-purple-bg:  #110a1f;
+  --badge-purple-text:#a78bfa;
+  --badge-orange-bg:  #1f100a;
+  --badge-orange-text:#fb923c;
+  --accent:           #FFD940;
+  --accent-bg:        #FFD940;
+  --accent-border:    #e8c200;
+  --accent-bg-hover:  #ffe55a;
+  --accent-border-hover:#d4b000;
+  --accent-text:      #000000;
+  --logo-fill:        #f5f5f5;
+  --logo-bolt:        #0d0d0d;
+  --status-bg:        #111111;
+  --status-border:    #1e1e1e;
+  --status-text:      #707070;
+}
+
+/* ─── Base ─── */
+* {
+  box-sizing: border-box;
+  border-radius: 0 !important;
+}
+
+body {
+  background: var(--bg-canvas);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); }
+::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
