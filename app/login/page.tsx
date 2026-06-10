@@ -63,7 +63,7 @@ const portals = [
 export default function LoginSelectorPage() {
   return (
     <div style={{
-      minHeight: '100vh', background: '#000', fontFamily: INTER,
+      height: '100vh', background: '#000', fontFamily: INTER,
       display: 'flex', flexDirection: 'column',
       position: 'relative', overflow: 'hidden',
     }}>
@@ -109,12 +109,13 @@ export default function LoginSelectorPage() {
         flex: 1, position: 'relative', zIndex: 10,
         display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
-        padding: 'clamp(40px,6vh,80px) clamp(24px,5vw,48px)',
+        padding: 'clamp(16px,3vh,32px) clamp(24px,5vw,48px)',
+        overflow: 'hidden',
       }}>
         {/* Headline */}
-        <div style={{ textAlign: 'center', marginBottom: 64 }}>
+        <div style={{ textAlign: 'center', marginBottom: 32 }}>
           {/* Gold line */}
-          <div style={{ width: 32, height: 1, background: YELLOW, margin: '0 auto 20px' }} />
+          <div style={{ width: 32, height: 1, background: YELLOW, margin: '0 auto 14px' }} />
           <p style={{
             fontSize: 10, letterSpacing: '4px', textTransform: 'uppercase' as const,
             color: 'rgba(255,255,255,0.4)', marginBottom: 16, fontFamily: INTER,
@@ -138,18 +139,18 @@ export default function LoginSelectorPage() {
           {portals.map(({ href, label, icon: Icon, accent, badge, badgeBg, headline, desc, features, cta, ctaBg, ctaColor, cardBg, border }) => (
             <div key={href} style={{
               background: cardBg, border,
-              padding: '44px 36px',
+              padding: '28px 28px',
               display: 'flex', flexDirection: 'column',
             }}>
               {/* Icon + badge */}
-              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 24 }}>
-                <div style={{ width: 48, height: 48, border: `1px solid ${accent}30`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Icon size={20} style={{ color: accent }} />
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 16 }}>
+                <div style={{ width: 40, height: 40, border: `1px solid ${accent}30`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Icon size={17} style={{ color: accent }} />
                 </div>
                 {badge && (
                   <span style={{
                     fontSize: 9, fontWeight: 700, letterSpacing: '2px',
-                    textTransform: 'uppercase' as const, padding: '5px 10px',
+                    textTransform: 'uppercase' as const, padding: '4px 8px',
                     background: badgeBg, color: '#fff', fontFamily: INTER,
                   }}>{badge}</span>
                 )}
@@ -159,26 +160,26 @@ export default function LoginSelectorPage() {
               <p style={{
                 fontSize: 9, fontWeight: 700, letterSpacing: '3px',
                 textTransform: 'uppercase' as const, color: accent,
-                marginBottom: 8, fontFamily: INTER,
+                marginBottom: 6, fontFamily: INTER,
               }}>{label}</p>
               <h2 style={{
-                fontSize: 16, fontWeight: 900, lineHeight: 1.2,
-                color: '#fff', marginBottom: 12, fontFamily: INTER,
+                fontSize: 15, fontWeight: 900, lineHeight: 1.2,
+                color: '#fff', marginBottom: 8, fontFamily: INTER,
               }}>{headline}</h2>
               <p style={{
-                fontSize: 13, fontWeight: 300, lineHeight: 1.7,
-                color: INK, marginBottom: 24, fontFamily: INTER, flex: 1,
+                fontSize: 12, fontWeight: 300, lineHeight: 1.6,
+                color: INK, marginBottom: 16, fontFamily: INTER, flex: 1,
               }}>{desc}</p>
 
               {/* Features */}
-              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px' }}>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 20px' }}>
                 {features.map(f => (
                   <li key={f} style={{
-                    display: 'flex', alignItems: 'center', gap: 10,
-                    marginBottom: 10, fontSize: 12, fontWeight: 300,
+                    display: 'flex', alignItems: 'center', gap: 8,
+                    marginBottom: 7, fontSize: 11, fontWeight: 300,
                     color: INK, fontFamily: INTER,
                   }}>
-                    <CheckCircle2 size={11} style={{ color: accent, flexShrink: 0 }} />
+                    <CheckCircle2 size={10} style={{ color: accent, flexShrink: 0 }} />
                     {f}
                   </li>
                 ))}
@@ -187,7 +188,7 @@ export default function LoginSelectorPage() {
               {/* CTA */}
               <Link href={href} style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                padding: '14px 0', fontSize: 10, fontWeight: 700,
+                padding: '12px 0', fontSize: 10, fontWeight: 700,
                 letterSpacing: '2px', textTransform: 'uppercase' as const,
                 textDecoration: 'none', fontFamily: INTER,
                 background: ctaBg, color: ctaColor,
